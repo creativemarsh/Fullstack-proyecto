@@ -1,5 +1,4 @@
-package com.perfulandia.ms_db_product.controller;
-
+package main.java.com.perfulandia.ms_bs_product.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,52 +14,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.perfulandia.ms_db_product.model.dto.DTOProduct;
-import com.perfulandia.ms_db_product.model.entities.entityProduct;
-import com.perfulandia.ms_db_product.service.serviceProduct;
+import com.perfulandia.ms_bs_product.model.DTO.DTOProduct;
+import com.perfulandia.ms_bs_product.service.ServiceProduct;
 
 
 @RestController
 @RequestMapping("/api/product")
 @CrossOrigin("*")
-public class controllerProduct {
+public class ControllerProduct {
 
-    
     @Autowired
-    serviceProduct serviceProduct;
+    private ServiceProduct serviceProduct;
 
     @GetMapping("")
-    public ResponseEntity<List<DTOProduct>> getAProducts() {
+    public ResponseEntity<List<DTOProduct>> getAllProducts() {
         List<DTOProduct> products = serviceProduct.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DTOProduct> getProductById(@PathVariable(name="id") Long id) {
+    public ResponseEntity<DTOProduct> getProductById(@PathVariable("id") Long id) {
         DTOProduct product = serviceProduct.getProductById(id);
-        if (product != null) {
-            return ResponseEntity.ok(product);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(product);
     }
 
-    @PostMapping("/post")
-    public ResponseEntity<entityProduct> saveProduct (@RequestBody DTOProduct productDto) {
-        entityProduct savedProduct = serviceProduct.saveProduct(productDto);
+    @PostMapping("")
+    public ResponseEntity<DTOProduct> saveProduct(@RequestBody DTOProduct dtoProduct) {
+        DTOProduct savedProduct = serviceProduct.saveProduct(dtoProduct);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DTOProduct> updateProduct(@PathVariable(name="id") Long id, @RequestBody DTOProduct dtoProduct) {
+    public ResponseEntity<DTOProduct> updateProduct(@PathVariable("id") Long id, @RequestBody DTOProduct dtoProduct) {
         DTOProduct updatedProduct = serviceProduct.updateProduct(id, dtoProduct);
-        return updatedProduct != null ? ResponseEntity.ok(updatedProduct) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable(name="id") Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
         serviceProduct.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
-    
+
 }

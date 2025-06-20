@@ -24,5 +24,6 @@ public class DTOProduct {
     @JsonProperty(value = "Descripcion_Producto")
     private String desc_product;
 
+    @JsonProperty(value = "precio_Producto")
     private Long precio;
 }
