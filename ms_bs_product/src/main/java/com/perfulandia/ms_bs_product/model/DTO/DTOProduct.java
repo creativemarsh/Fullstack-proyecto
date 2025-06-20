@@ -1,4 +1,6 @@
-package main.java.com.perfulandia.ms_bs_product.model.DTOProduct;
+package com.perfulandia.ms_bs_product.model.DTO;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

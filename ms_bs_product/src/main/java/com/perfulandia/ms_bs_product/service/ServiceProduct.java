@@ -1,13 +1,15 @@
-package main.java.com.perfulandia.ms_bs_product.service;
+package com.perfulandia.ms_bs_product.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.perfulandia.ms_bs_product.client.ProductBsFeignProduct;
 import com.perfulandia.ms_bs_product.model.DTO.DTOProduct;
 
+@Service
 public class ServiceProduct {
 
     @Autowired

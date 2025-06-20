@@ -1,4 +1,4 @@
-package main.java.com.perfulandia.ms_bs_product.client;
+package com.perfulandia.ms_bs_product.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

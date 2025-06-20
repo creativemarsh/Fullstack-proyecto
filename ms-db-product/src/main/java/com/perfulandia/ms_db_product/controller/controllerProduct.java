@@ -45,7 +45,7 @@ public class controllerProduct {
         }
     }
 
-    @PostMapping("/post")
+    @PostMapping("")
     public ResponseEntity<entityProduct> saveProduct (@RequestBody DTOProduct productDto) {
         entityProduct savedProduct = serviceProduct.saveProduct(productDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);

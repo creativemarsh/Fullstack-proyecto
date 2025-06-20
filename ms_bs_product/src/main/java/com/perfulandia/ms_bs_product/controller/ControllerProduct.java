@@ -1,4 +1,4 @@
-package main.java.com.perfulandia.ms_bs_product.controller;
+package com.perfulandia.ms_bs_product.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.perfulandia.ms_bs_product.model.DTO.DTOProduct;
 import com.perfulandia.ms_bs_product.service.ServiceProduct;
+
 
 
 @RestController
@@ -39,9 +40,9 @@ public class ControllerProduct {
     }
 
     @PostMapping("")
-    public ResponseEntity<DTOProduct> saveProduct(@RequestBody DTOProduct dtoProduct) {
+    public String saveProduct(@RequestBody DTOProduct dtoProduct) {
         DTOProduct savedProduct = serviceProduct.saveProduct(dtoProduct);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
+        return "producto guardado";
     }
 
     @PutMapping("/{id}")
