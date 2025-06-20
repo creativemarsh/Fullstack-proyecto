@@ -1,7 +1,6 @@
 # Prueba 2
 
-
-### Contrasena base de dato 
+### Contrasena base de dato
 
 ##### Samuel
 
@@ -21,7 +20,7 @@ precio VARCHAR(45) NOT NULL,
 PRIMARY KEY (id_product));
 
 CREATE TABLE `perfulandia`.`client` (
-  `id_client` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name_client` VARCHAR(100) NULL,
   `email_client` VARCHAR(45) NULL,
   `phone_client` VARCHAR(45) NULL,
