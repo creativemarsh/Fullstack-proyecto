@@ -34,11 +34,11 @@ public class serviceProduct {
         return product;
     }
 
-    public DTOProduct getAllProducts() {
+    public List<DTOProduct> getAllProducts() {
         List<entityProduct> listProducts = productoRepo.findAll();
-        DTOProduct dtoProduct = new DTOProduct();
+        List<DTOProduct> dtoProduct = new java.util.ArrayList<>();
         for (entityProduct product : listProducts) {
-            dtoProduct = TranslataEntityTOProduct(product);
+            dtoProduct.add(TranslataEntityTOProduct(product));
         }
         return dtoProduct;
     }
@@ -56,4 +56,25 @@ public class serviceProduct {
         entityProduct product = translateDTOToEntity(dtoProduct);
         return productoRepo.save(product);
     }
+
+    public DTOProduct updateProduct(Long id, DTOProduct dtoProduct) {
+        Optional<entityProduct> existingProductOptional = productoRepo.findById(id);
+        if (existingProductOptional.isPresent()) {
+            entityProduct existingProduct = existingProductOptional.get();
+            existingProduct.setName_product(dtoProduct.getName_product());
+            existingProduct.setDesc_product(dtoProduct.getDesc_product());
+            existingProduct.setPrecio(dtoProduct.getPrecio());
+            entityProduct updatedProduct = productoRepo.save(existingProduct);
+            return TranslataEntityTOProduct(updatedProduct);
+        } else {
+            return null;
+        }
+    }
+
+    public void deleteProduct(Long id) {
+        productoRepo.deleteById(id);
+    }
+
+
+    
 }
