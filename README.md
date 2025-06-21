@@ -26,6 +26,14 @@ CREATE TABLE `perfulandia`.`client` (
   `phone_client` VARCHAR(45) NULL,
   PRIMARY KEY (`id_client`));
 
+
+CREATE TABLE `perfulandia`.`sales` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `amount` VARCHAR(45) NOT NULL,
+  `sales_date` VARCHAR(45) NOT NULL,
+  `client_id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
 ## DTO
 
 ### ProductDTO
