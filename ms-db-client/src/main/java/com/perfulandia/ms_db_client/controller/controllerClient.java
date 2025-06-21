@@ -21,19 +21,19 @@ public class controllerClient {
     private serviceClient serviceClient;
 
     
-    @GetMapping
+    @GetMapping("")
     public List<DTOClient> getAllClients() {
         return serviceClient.getAllClients();
     }
 
     
     @GetMapping("/{id}")
-    public DTOClient getClientById(@PathVariable Long id) {
+    public DTOClient getClientById(@PathVariable(name = "id" ) Long id) {
         return serviceClient.getClientById(id);
     }
 
     
-    @PostMapping
+    @PostMapping("")
     public DTOClient saveClient(@RequestBody DTOClient dtoClient) {
         return serviceClient.saveClient(dtoClient);
     }

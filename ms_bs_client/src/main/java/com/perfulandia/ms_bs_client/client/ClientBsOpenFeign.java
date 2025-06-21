@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.perfulandia.ms_bs_client.model.dto.DTOClient;
 
-@FeignClient(name = "ms-bs-client", url = "http://localhost:8180/client")
+@FeignClient(name = "Client", url = "http://localhost:8180/clients")
 public interface ClientBsOpenFeign {
 
-    @GetMapping 
+    @GetMapping("")
     List<DTOClient> getAllClients();
 
     @GetMapping("/{id}")
     DTOClient getClientById(@PathVariable Long id);
 
-    @PostMapping
+    @PostMapping("")
     DTOClient saveClient(@RequestBody DTOClient dtoClient);
 
 }

@@ -13,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor // Constructor con todos los argumentos
 public class DTOClient {
 
+    
     private Long id;
 
     @JsonProperty("Nombre_Cliente")

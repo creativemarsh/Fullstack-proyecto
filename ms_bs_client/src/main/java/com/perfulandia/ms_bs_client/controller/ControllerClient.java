@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.perfulandia.ms_bs_client.model.dto.DTOClient;
 import com.perfulandia.ms_bs_client.service.ServiceClient;
 
-@RequestMapping("/client")
+@RequestMapping("/clients")
 @RestController
 @CrossOrigin("*")
 public class ControllerClient {
@@ -22,7 +22,7 @@ public class ControllerClient {
     @Autowired
     private ServiceClient serviceClient;
 
-    @GetMapping
+    @GetMapping("")
     public List<DTOClient> getAllClients() {
         return serviceClient.getAllClients();
     }
@@ -32,7 +32,7 @@ public class ControllerClient {
         return serviceClient.getClientById(id);
     }
 
-    @PostMapping
+    @PostMapping("")
     public DTOClient createClient(@RequestBody DTOClient dtoClient) {
         return serviceClient.createClient(dtoClient);
     }    

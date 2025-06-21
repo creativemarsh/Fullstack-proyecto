@@ -2,6 +2,7 @@ package com.perfulandia.ms_bs_client.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.perfulandia.ms_bs_client.client.ClientBsOpenFeign;
@@ -9,7 +10,7 @@ import com.perfulandia.ms_bs_client.model.dto.DTOClient;
 
 @Service
 public class ServiceClient {
-
+    @Autowired
     private ClientBsOpenFeign clientBsOpenFeign;
 
 
