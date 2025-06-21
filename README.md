@@ -1,13 +1,5 @@
 # Prueba 2
 
-### Contrasena base de dato
-
-##### Samuel
-
-Admin
-
-System
-
 ## Creacion base de dato
 
 CREATE DATABASE perfulandia; use perfulandia;
