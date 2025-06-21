@@ -1,4 +1,4 @@
-package com.perfulandia.ms_db_sales.model.dto;
+package com.perfulandia.ms_bs_sales.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@ToString
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
 public class SalesDetailDTO {
     @JsonProperty("id_sales_detail")
     private Long id;
@@ -22,5 +22,4 @@ public class SalesDetailDTO {
     private Long quantity; 
     @JsonProperty("sales_id")
     private Long sales_Id;
-    
 }

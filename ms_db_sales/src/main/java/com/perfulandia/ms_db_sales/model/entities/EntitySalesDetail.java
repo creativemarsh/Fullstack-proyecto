@@ -1,6 +1,5 @@
 package com.perfulandia.ms_db_sales.model.entities;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,14 +18,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EntitySalesDetail {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "sales_id")
-    private Long sales_id;
+    
+    
     @Column(name = "quantity")
     private Long quantity;
     @Column(name = "product_id")
     private Long product_id;
+    @Column(name = "sales_id")
+    private Long salesId;
 }
