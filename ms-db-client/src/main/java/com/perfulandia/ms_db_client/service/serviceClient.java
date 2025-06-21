@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.perfulandia.ms_db_client.model.dto.DTOClient;
 import com.perfulandia.ms_db_client.model.entities.entityClient;
@@ -18,30 +16,47 @@ public class serviceClient {
     @Autowired
     private repositoryClient repository;
 
-
+    // Obtener todos los clientes
     public List<DTOClient> getAllClients() {
         return repository.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
 
-
-    public DTOClient getClientById(@PathVariable Long id) {
+    // Obtener cliente por ID
+    public DTOClient getClientById(Long id) {
         entityClient client = repository.findById(id).orElse(null);
         return client != null ? toDto(client) : null;
     }
 
-
-    public DTOClient saveClient(@RequestBody DTOClient dtoClient) {
+    // Guardar nuevo cliente
+    public DTOClient saveClient(DTOClient dtoClient) {
         entityClient entity = toEntity(dtoClient);
         return toDto(repository.save(entity));
+    }
+
+    // ✅ Actualizar cliente existente
+    public DTOClient updateClient(Long id, DTOClient dtoClient) {
+        entityClient existing = repository.findById(id).orElse(null);
+        if (existing != null) {
+            existing.setNameClient(dtoClient.getNameClient());
+            existing.setEmailClient(dtoClient.getEmailClient());
+            existing.setPhoneClient(dtoClient.getPhoneClient());
+            return toDto(repository.save(existing));
+        }
+        return null; // O puedes lanzar una excepción si prefieres
+    }
+
+    // ✅ Eliminar cliente por ID
+    public void deleteClient(Long id) {
+        repository.deleteById(id);
     }
 
     // Conversión de Entity a DTO
     private DTOClient toDto(entityClient entity) {
         return new DTOClient(
-                entity.getId(),
-                entity.getNameClient(),
-                entity.getEmailClient(),
-                entity.getPhoneClient()
+            entity.getId(),
+            entity.getNameClient(),
+            entity.getEmailClient(),
+            entity.getPhoneClient()
         );
     }
 
