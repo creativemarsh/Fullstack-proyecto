@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import com.perfulandia.ms_db_sales.model.dto.DTOClient;
 import com.perfulandia.ms_db_sales.model.dto.SalesDTO;
 import com.perfulandia.ms_db_sales.model.entities.EntitySales;
 import com.perfulandia.ms_db_sales.model.repositories.RepositorySales;
@@ -32,11 +33,13 @@ public class ServiceSales {
 
 
     public EntitySales translateDTOToEntity(SalesDTO salesDTO) {
-        EntitySales  entitySales = new EntitySales();
+        EntitySales entitySales = new EntitySales();
         entitySales.setId(salesDTO.getId());
         entitySales.setSales_date(salesDTO.getSales_date());
         entitySales.setAmount(salesDTO.getAmount());
-        entitySales.setClient_id(salesDTO.getClient_id());
+        if (salesDTO.getClient() != null && salesDTO.getClient().getId() != null) {
+            entitySales.setClient_id(salesDTO.getClient().getId());
+        }
         return entitySales;
     }
 
@@ -45,7 +48,9 @@ public class ServiceSales {
         salesDTO.setId(entitySales.getId());
         salesDTO.setSales_date(entitySales.getSales_date());
         salesDTO.setAmount(entitySales.getAmount());
-        salesDTO.setClient_id(entitySales.getClient_id());
+        DTOClient client = new DTOClient();
+        client.setId(entitySales.getClient_id());
+        salesDTO.setClient(client);
         return salesDTO;
     }
 
@@ -70,15 +75,15 @@ public class ServiceSales {
     public EntitySales saveSales(SalesDTO salesDTO) {
         EntitySales entitySales = new EntitySales();
         entitySales.setId(salesDTO.getId());
-        
         entitySales.setSales_date(fechaActualChile);
         entitySales.setAmount(salesDTO.getAmount());
-        entitySales.setClient_id(salesDTO.getClient_id());
+        entitySales.setClient_id(salesDTO.getClient().getId());
         return repoSales.save(entitySales);
     }
 
     public EntitySales updateSales(SalesDTO salesDTO) {
         EntitySales entitySales = translateDTOToEntity(salesDTO);
+        entitySales.setSales_date(fechaActualChile);
         return repoSales.save(entitySales);
     }
 

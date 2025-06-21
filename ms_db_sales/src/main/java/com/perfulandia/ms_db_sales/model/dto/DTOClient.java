@@ -13,14 +13,17 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SalesDetailDTO {
-    @JsonProperty("id_sales_detail")
+public class DTOClient {
+
+    @JsonProperty("id_client")
     private Long id;
-    @JsonProperty("sales_id")
-    private Long sales_id;
-    @JsonProperty("quantity")
-    private Long quantity;
-    @JsonProperty("product_id")
-    private Long product_id;
-    
+
+    @JsonProperty("Nombre_Cliente")
+    private String nameClient;
+
+    @JsonProperty("Correo_Cliente")
+    private String emailClient;
+
+    @JsonProperty("Telefono_Cliente")
+    private String phoneClient;
 }
