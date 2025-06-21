@@ -35,11 +35,8 @@ public class SalesService {
 
     public SalesDTO getSalesById(Long id) {
         SalesDTO salesDTO = new SalesDTO();
-        
-        salesDTO.setId(BsOpenFeignSales.getSaleById(id).getClient().getId());
-        salesDTO.setSales_date(BsOpenFeignSales.getSaleById(id).getSales_date());
-        salesDTO.setAmount(BsOpenFeignSales.getSaleById(id).getAmount());
-        salesDTO.setClient(BsOpenFeignClient.getClientById(BsOpenFeignSales.getSaleById(id).getClient().getId()));
+        salesDTO = BsOpenFeignSales.getSaleById(id);
+        salesDTO.setClient(BsOpenFeignClient.getClientById(salesDTO.getClient().getId()));
         return salesDTO;
     }
 

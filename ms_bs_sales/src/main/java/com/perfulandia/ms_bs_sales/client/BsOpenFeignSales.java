@@ -29,7 +29,7 @@ public interface BsOpenFeignSales {
     @PutMapping("")
     SalesDTO updateSale(@RequestBody SalesDTO salesDTO);
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     String deleteSale(@PathVariable(name="id") Long id);
 
 
