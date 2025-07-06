@@ -40,9 +40,9 @@ public class ControllerProduct {
     }
 
     @PostMapping("")
-    public String saveProduct(@RequestBody DTOProduct dtoProduct) {
+    public ResponseEntity<DTOProduct> saveProduct(@RequestBody DTOProduct dtoProduct) {
         DTOProduct savedProduct = serviceProduct.saveProduct(dtoProduct);
-        return "producto guardado";
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @PutMapping("/{id}")

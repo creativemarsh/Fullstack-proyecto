@@ -43,13 +43,15 @@ public class ControllerSale {
 
 
     @PostMapping("")
-    private SalesDTO createSale(SalesDTO salesDTO) {
-        return salesService.createSale(salesDTO);
+    private String createSale(@RequestBody SalesDTO salesDTO) {
+        salesService.createSale(salesDTO);
+        return "Venta creada con éxito";
     }
 
     @PutMapping("")
-    private SalesDTO updateSale(SalesDTO salesDTO) {
-        return salesService.updateSale(salesDTO);
+    private String updateSale(@RequestBody SalesDTO salesDTO) {
+        salesService.updateSale(salesDTO);
+        return "Cambio de venta exitoso";
     }
 
     @DeleteMapping("/{id}")

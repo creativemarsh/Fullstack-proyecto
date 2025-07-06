@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.perfulandia.ms_bs_sales.model.dto.ProductDTO;
 
-@FeignClient(name = "product", url = "http://localhost:8381/api/product")
+@FeignClient(name = "product", url = "http://localhost:8281/api/product")
 public interface BsOpenFeignProduct {
     @GetMapping("")
     public List<ProductDTO> getAllProducts();
